@@ -1,0 +1,52 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+vendor/
+node_modules/
+
+# Build outputs
+public/build/
+public/hot
+public/storage
+
+# IDE & editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Web-monitor specific (folder contents ignored, folder structure kept)
+web-monitor/.env
+web-monitor/vendor/
+web-monitor/node_modules/
+web-monitor/public/build/
+web-monitor/public/hot
+web-monitor/public/storage
+web-monitor/storage/*.key
+web-monitor/storage/pail
+
+# Docker (if secrets in compose)
+docker-compose.yml
+docker-compose.override.yml
+*.env.local
+
+# Logs
+*.log
+storage/logs/*.log
+
+# Testing
+.phpunit.result.cache
+.phpunit.cache/
+
+# Misc
+.phpactor.json
+_ide_helper.php
+Homestead.json
+Homestead.yaml
