@@ -1,0 +1,32 @@
+# Lab Docker untuk MCC — sesuai PRD M1 (MariaDB + database queue di Laravel).
+#
+# Template tanpa kredensial: password wajib diambil dari environment.
+# Compose membaca .env di direktori ini secara otomatis — set di sana:
+#   MARIADB_PASSWORD=...      (tanpa default: compose menolak start jika kosong)
+#   MARIADB_ROOT_PASSWORD=...
+#
+# CATATAN: Docker TIDAK terpasang di mesin pengembangan saat ini, jadi file
+# ini BELUM diuji. Saat Docker tersedia: docker compose up -d, lalu aktifkan
+# blok DB_CONNECTION=mariadb di .env dan jalankan migrate.
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: mcc-mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-mcc}
+      MARIADB_USER: ${MARIADB_USER:-mcc}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:?Set MARIADB_PASSWORD di .env}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:?Set MARIADB_ROOT_PASSWORD di .env}
+    ports:
+      - "${MARIADB_PORT:-3306}:3306"
+    volumes:
+      - mcc-mariadb-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mcc-mariadb-data:

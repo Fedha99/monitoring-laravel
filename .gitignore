@@ -15,6 +15,9 @@ public/storage
 # IDE & editors
 .idea/
 .vscode/
+.fleet/
+.nova/
+.zed/
 *.swp
 *.swo
 
@@ -22,7 +25,7 @@ public/storage
 .DS_Store
 Thumbs.db
 
-# Web-monitor specific (folder contents ignored, folder structure kept)
+# Web-monitor (versi lama, dihapus pada commit lanjutan)
 web-monitor/.env
 web-monitor/vendor/
 web-monitor/node_modules/
@@ -31,9 +34,10 @@ web-monitor/public/hot
 web-monitor/public/storage
 web-monitor/storage/*.key
 web-monitor/storage/pail
+web-monitor/.git
 
-# Docker (if secrets in compose)
-docker-compose.yml
+# Docker — template docker-compose.yml DI-TRACK (tanpa kredensial;
+# password diambil dari .env/environment). Yang di-ignore hanya override & env lokal.
 docker-compose.override.yml
 *.env.local
 
@@ -50,4 +54,8 @@ storage/logs/*.log
 _ide_helper.php
 Homestead.json
 Homestead.yaml
-web-monitor/.git
+auth.json
+npm-debug.log
+yarn-error.log
+storage/*.key
+storage/pail

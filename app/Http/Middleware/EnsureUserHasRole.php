@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+/**
+ * FR-001: pemeriksaan role server-side pada setiap endpoint.
+ * Penggunaan: Route::middleware('role:admin')
+ */
+class EnsureUserHasRole
+{
+    public function handle(Request $request, Closure $next, string $role): Response
+    {
+        $user = $request->user();
+
+        if (! $user || ! $user->hasRole($role)) {
+            // Respons terlarang tanpa membocorkan informasi (FR-001 AC)
+            abort(403);
+        }
+
+        return $next($request);
+    }
+}
