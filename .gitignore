@@ -25,17 +25,6 @@ public/storage
 .DS_Store
 Thumbs.db
 
-# Web-monitor (versi lama, dihapus pada commit lanjutan)
-web-monitor/.env
-web-monitor/vendor/
-web-monitor/node_modules/
-web-monitor/public/build/
-web-monitor/public/hot
-web-monitor/public/storage
-web-monitor/storage/*.key
-web-monitor/storage/pail
-web-monitor/.git
-
 # Docker — template docker-compose.yml DI-TRACK (tanpa kredensial;
 # password diambil dari .env/environment). Yang di-ignore hanya override & env lokal.
 docker-compose.override.yml
